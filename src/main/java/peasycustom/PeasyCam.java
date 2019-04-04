@@ -422,20 +422,6 @@ public class PeasyCam {
 		return distance;
 	}
 
-	public void zoom(float dx, final long animationTimeMillis) {
-		double new_distance = distance + dx * distance * 0.02;
-		if (new_distance < minimumDistance) {
-			new_distance = minimumDistance;
-			dampedZoom.stop();
-		}
-		if (new_distance > maximumDistance) {
-			new_distance = maximumDistance;
-			dampedZoom.stop();
-		}
-		safeSetDistance(new_distance);
-//		setDistance(getDistance() + dx, animationTimeMillis);
-	}
-
 	public void setDistance(final double newDistance) {
 		setDistance(newDistance, 300);
 	}
