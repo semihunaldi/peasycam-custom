@@ -62,6 +62,13 @@ public class Vector3D implements Serializable {
 		z = 0;
 	}
 
+	public boolean isEqual(Vector3D vector3D) {
+		if(this.x != vector3D.x) return false;
+		if(this.y != vector3D.y) return false;
+		if(this.z != vector3D.z) return false;
+		return true;
+	}
+
 	/**
 	 * Simple constructor. Build a vector from its coordinates
 	 * 

@@ -38,6 +38,13 @@ public class CameraState implements Serializable {
 		this.distance = distance;
 	}
 
+	public boolean isEqual(CameraState cameraState) {
+		if(!this.center.isEqual(cameraState.center)) return false;
+		if(!this.rotation.isEqual(cameraState.rotation)) return false;
+		if(this.distance != cameraState.distance) return false;
+		return true;
+	}
+
 	public void apply(final PApplet a) {
 		if (a.recorder != null) {
 			apply(a.recorder);

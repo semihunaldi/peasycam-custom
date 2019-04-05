@@ -113,6 +113,14 @@ public class Rotation implements Serializable {
 		q3 = 0;
 	}
 
+	public boolean isEqual(Rotation rotation) {
+		if(this.q0 != rotation.q0) return false;
+		if(this.q1 != rotation.q1) return false;
+		if(this.q2 != rotation.q2) return false;
+		if(this.q3 != rotation.q3) return false;
+		return true;
+	}
+
 	/**
 	 * Build a rotation from the quaternion coordinates.
 	 * <p>
