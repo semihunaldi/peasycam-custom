@@ -5,3 +5,5 @@ logs
 out
 target
 *.jnilib
+
+*.DS_Store
