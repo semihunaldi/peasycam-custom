@@ -37,6 +37,8 @@ import processing.opengl.PGraphicsOpenGL;
  */
 public class PeasyCam {
 
+	private boolean mouseAlwaysAtCenter;
+
 	public final String VERSION = "301";
 
 	private static final Vector3D LOOK = Vector3D.plusK;
@@ -400,9 +402,17 @@ public class PeasyCam {
 		double viewW = viewport[2];
 		double viewH = viewport[3];
 
+
+		double mxNdc;
+		double myNdc;
 		// mouse [-1, +1]
-		double mxNdc = Math.min(Math.max((p.mouseX - viewX) / viewW, 0), 1) * 2 - 1;
-		double myNdc = Math.min(Math.max((p.mouseY - viewY) / viewH, 0), 1) * 2 - 1;
+		if(mouseAlwaysAtCenter) {
+			mxNdc = Math.min(Math.max((p.width/2f - viewX) / viewW, 0), 1) * 2 - 1;
+			myNdc = Math.min(Math.max((p.height/2f - viewY) / viewH, 0), 1) * 2 - 1;
+		} else {
+			mxNdc = Math.min(Math.max((p.mouseX - viewX) / viewW, 0), 1) * 2 - 1;
+			myNdc = Math.min(Math.max((p.mouseY - viewY) / viewH, 0), 1) * 2 - 1;
+		}
 
 		if (dragConstraint == null || dragConstraint == Constraint.YAW
 				|| dragConstraint == Constraint.SUPPRESS_ROLL) {
@@ -775,5 +785,13 @@ public class PeasyCam {
 		protected void setEndState() {
 			rotation = endRotation;
 		}
+	}
+
+	public boolean isMouseAlwaysAtCenter() {
+		return mouseAlwaysAtCenter;
+	}
+
+	public void setMouseAlwaysAtCenter(boolean mouseAlwaysAtCenter) {
+		this.mouseAlwaysAtCenter = mouseAlwaysAtCenter;
 	}
 }
